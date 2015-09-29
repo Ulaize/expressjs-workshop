@@ -5,31 +5,33 @@ app.get('/op/:operation/:number1/:number2', function (req, res) {
   var typeOp = req.params.operation;
   var num1 = req.params.number1;
   var num2 = req.params.number2;
-  
+  var result = {
+      operation: typeOp,
+      firstOperand: num1,
+      secondOperand: num2,
+      solution: mathOp
+  };
   var mathOp;
   switch(typeOp) {
     case "add":
         mathOp = Number(num1) + Number(num2);
+        res.json(result);
         break;
     case "substract":
         mathOp = Number(num1) - Number(num2);
+        res.json(result);
         break;
     case "multiply":
         mathOp = Number(num1) * Number(num2);
+        res.json(result);
         break;
     case "divide":
         mathOp = Number(num1) / Number(num2);
+        res.json(result);
         break;
+    default:
+        res.sendStatus(404);
   }
-  
-  var result = {
-    operation: typeOp,
-    firstOperand: num1,
-    secondOperand: num2,
-    solution: mathOp
-  };
-  
-  res.json(result);
 });
 
 
