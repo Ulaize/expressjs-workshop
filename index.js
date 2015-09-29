@@ -31,14 +31,12 @@ var entries = {
 var turnObjArr= Object.keys(entries);
 
 app.get('/entry/:entryId', function (req, res) {
-  var id = req.params.entryID;
-  for (var i = 0; i < turnObjArr.length; i++){
-    if(id===turnObjArr[i]){
-      res.json(entries[id]);
-    }
-    else {
-      res.send("This entry does not exsist, please try again");
-    }
+  var id = req.params.entryId;
+  if(entries[id]) {
+    res.json(entries[id]);
+  }
+  else {
+    res.sendStatus(404);
   }
   
 });
