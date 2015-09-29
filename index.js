@@ -32,10 +32,9 @@ var turnObjArr= Object.keys(entries);
 
 app.get('/entry/:entryId', function (req, res) {
   var id = req.params.entryID;
-  console.log(req.params.entryID);
-  for (var i = 0;; i < turnObjArr.length; i++){
+  for (var i = 0; i < turnObjArr.length; i++){
     if(id===turnObjArr[i]){
-      res.json(entries.id);
+      res.json(entries[id]);
     }
     else {
       res.send("This entry does not exsist, please try again");
