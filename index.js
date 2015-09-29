@@ -1,8 +1,47 @@
 var express = require('express');
 var app = express();
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+var entries = {
+  1: {
+    firstName: "John",
+    lastName: "Smith",
+    emails: [
+      {type: "home", address: "john@smith.com"},
+      {type: "work", address: "jsmith@megacorp.com"}
+    ]
+  },
+  2: {
+    firstName: "Mary",
+    lastName: "Smith",
+    emails: [
+      {type: "home", address: "mary@smith.com"},
+      {type: "work", address: "mary@megacorp.com"}
+    ]
+  },
+  3: {
+    firstName: "Paula",
+    lastName: "Aranguren",
+    emails: [
+      {type: "home", address: "paula@aranguren.com"},
+      {type: "work", address: "paula@megacorp.com"}
+    ]
+  }
+};
+
+var turnObjArr= Object.keys(entries);
+
+app.get('/entry/:entryId', function (req, res) {
+  var id = req.params.entryID;
+  console.log(req.params.entryID);
+  for (var i = 0;; i < turnObjArr.length; i++){
+    if(id===turnObjArr[i]){
+      res.json(entries.id);
+    }
+    else {
+      res.send("This entry does not exsist, please try again");
+    }
+  }
+  
 });
 
 
